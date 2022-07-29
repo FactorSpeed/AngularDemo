@@ -1,0 +1,23 @@
+<h1>Heroes</h1>
+
+<div *ngIf="heroes">
+  <h3>Other page</h3>
+  <div *ngFor="let hero of heroes">
+    <button type="button" [routerLink]="['/heroes/' + hero.id + '/details']">
+        {{ hero.name }}
+    </button>
+  </div>
+
+  <h3>Same page</h3>
+  <div *ngFor="let hero of heroes">
+    <button type="button" (click)="onSelect(hero)">
+        {{ hero.name }}
+    </button>
+  </div>
+</div>
+
+<div *ngIf="hero !== undefined && view === 'list'">
+  <app-hero-info [hero]="hero" [view]="view"></app-hero-info>
+</div>
+
+<app-message></app-message>
