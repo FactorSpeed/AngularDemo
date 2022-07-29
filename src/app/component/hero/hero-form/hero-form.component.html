@@ -1,0 +1,16 @@
+<h1>{{action}} Hero</h1>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="name">name</span>
+        <input type="text" class="form-control" placeholder="name" aria-label="name" aria-describedby="name" [(ngModel)]="hero.name">
+      </div>
+
+      <div class="text-end">
+        <button type="button" class="btn btn-primary btn-sm" (click)="onSubmit()">save</button>
+      </div>
+    </div>
+  </div>
+</div>

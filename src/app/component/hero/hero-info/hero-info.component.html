@@ -1,10 +1,6 @@
-<div *ngIf="view === 'detail'" class="mb-2">
-  <button class="btn btn-primary btn-sm" type="button" (click)="backPage()">Return</button>
-</div>
-
 <div *ngIf="hero">
   <div [class]="view === 'detail' ? 'row' : ''">
-    <div [class]="view === 'detail' ? 'col-md-3' : ''">
+    <div [class]="view === 'detail' ? 'col-md-4' : ''">
       <div class="input-group mb-3">
         <span class="input-group-text" id="id">id</span>
         <input type="number" class="form-control" placeholder="id" aria-label="id" aria-describedby="id" readonly disabled [(ngModel)]="hero.id">
@@ -12,6 +8,25 @@
       <div class="input-group mb-3">
         <span class="input-group-text" id="name">name</span>
         <input type="text" class="form-control" placeholder="name" aria-label="name" aria-describedby="name" [(ngModel)]="hero.name">
+      </div>
+      <div *ngIf="view === 'detail'">
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-primary btn-sm" type="button" [routerLink]="['/heroes/all']">Return</button>
+          </div>
+          <div class="col">
+            <div class="text-end">
+              <div class="btn-group">
+                <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['/heroes/' + hero.id + '/edit']">
+                  edit
+                </button>
+                <button type="button" class="btn btn-sm btn-danger" (click)="delete()">
+                  delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

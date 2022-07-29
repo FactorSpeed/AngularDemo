@@ -3,7 +3,9 @@ export interface Hero {
   name: string
 }
 
-export const HEROES:Hero[] = [
-  { id: 12, name: 'Dr. Nice' },
-  { id: 13, name: 'Bombasto' }
-]
+export class Hero {
+  constructor(
+    public id: number,
+    public name: string
+  ) {}
+}

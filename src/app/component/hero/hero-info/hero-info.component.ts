@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Hero, HEROES} from "../../../entity/hero";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Hero} from "../../../entity/hero";
 import {Location} from "@angular/common";
+import {HeroService} from "../../../service/hero.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-hero-info',
@@ -12,19 +14,29 @@ export class HeroInfoComponent implements OnInit {
 
   @Input() hero: Hero | undefined;
   @Input() view = 'detail';
+  subscribe: Subscription[] = [];
 
-  constructor(private route: ActivatedRoute, private location: Location) {}
+  constructor(private route: ActivatedRoute, private location: Location, private heroService: HeroService, private router: Router) {}
 
   ngOnInit() {
     if(this.hero === undefined) {
       const routeParams = this.route.snapshot.paramMap;
       const heroId = Number(routeParams.get('hero'));
 
-      this.hero = HEROES.find((hero) => hero.id === heroId);
+      this.subscribe.push(this.heroService.findById(heroId).subscribe(hero => this.hero = hero));
     }
   }
 
-  backPage(): void {
-    this.location.back();
+  ngOnDestroy(): void {
+    this.subscribe.forEach((e) => {
+      e.unsubscribe();
+    })
+  }
+
+  delete(): void {
+    if(this.hero) {
+      this.heroService.delete(this.hero.id).subscribe();
+      this.router.navigate(['/heroes/all']).then();
+    }
   }
 }

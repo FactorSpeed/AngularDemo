@@ -1,9 +1,20 @@
-<h1>Heroes</h1>
+<div class="row">
+  <div class="col">
+    <h1>Heroes</h1>
+  </div>
+  <div class="col">
+    <div class="text-end">
+      <button class="btn btn-primary btn-sm" type="button" [routerLink]="['/heroes/new']">
+        New
+      </button>
+    </div>
+  </div>
+</div>
 
 <div *ngIf="heroes" class="container-fluid">
   <div class="row">
-    <h3>Other page</h3>
-    <div class="col-lg-3" *ngFor="let hero of heroes">
+    <h3 *ngIf="heroes.length > 0">Other page</h3>
+    <div class="col-lg-4" *ngFor="let hero of heroes">
       <div class="card mb-3">
         <div class="card-header">
           <div class="row">
@@ -12,9 +23,17 @@
             </div>
             <div class="col">
               <div class="text-end">
-                <button class="btn btn-primary btn-sm" type="button" [routerLink]="['/heroes/' + hero.id + '/details']">
-                  show
-                </button>
+                <div class="btn-group">
+                  <button class="btn btn-primary btn-sm" type="button" [routerLink]="['/heroes/' + hero.id + '/details']">
+                    show
+                  </button>
+                  <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['/heroes/' + hero.id + '/edit']">
+                    edit
+                  </button>
+                  <button class="btn btn-danger btn-sm" type="button" (click)="delete(hero)">
+                    delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -24,8 +43,8 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-3">
-      <h3>Same page</h3>
+    <div class="col-lg-4">
+      <h3 *ngIf="heroes.length > 0">Same page</h3>
       <div *ngFor="let hero of heroes">
         <div class="card mb-3">
           <div class="card-header">
@@ -46,12 +65,15 @@
       </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div *ngIf="hero !== undefined && view === 'list'">
         <h3>Details {{hero ? 'of ' + hero.name : ''}}</h3>
         <app-hero-info [hero]="hero" [view]="view"></app-hero-info>
-        <app-message></app-message>
       </div>
+    </div>
+
+    <div class="col-md-4">
+      <app-message></app-message>
     </div>
   </div>
 </div>
