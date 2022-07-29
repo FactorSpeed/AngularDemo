@@ -7,7 +7,7 @@
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text" id="name">name</span>
-        <input type="text" class="form-control" placeholder="name" aria-label="name" aria-describedby="name" [(ngModel)]="hero.name">
+        <input type="text" class="form-control" placeholder="name" aria-label="name" aria-describedby="name" readonly disabled [(ngModel)]="hero.name">
       </div>
       <div *ngIf="view === 'detail'">
         <div class="row">
