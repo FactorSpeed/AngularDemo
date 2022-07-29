@@ -43,12 +43,12 @@ export class HeroFormComponent implements OnInit, OnDestroy {
   }
 
   create(): void {
-    this.heroService.create(this.hero).subscribe()
+    this.subscribe.push(this.heroService.create(this.hero).subscribe())
     this.redirect()
   }
 
   update(): void {
-    this.heroService.update(this.hero).subscribe()
+    this.subscribe.push(this.heroService.update(this.hero).subscribe())
     this.redirect()
   }
 

@@ -35,7 +35,7 @@ export class HeroInfoComponent implements OnInit {
 
   delete(): void {
     if(this.hero) {
-      this.heroService.delete(this.hero.id).subscribe();
+      this.subscribe.push(this.heroService.delete(this.hero.id).subscribe())
       this.router.navigate(['/heroes/all']).then();
     }
   }
