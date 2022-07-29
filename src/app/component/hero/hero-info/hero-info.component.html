@@ -1,12 +1,18 @@
-<div *ngIf="view === 'detail'">
-  <button type="button" (click)="backPage()">Return</button>
+<div *ngIf="view === 'detail'" class="mb-2">
+  <button class="btn btn-primary btn-sm" type="button" (click)="backPage()">Return</button>
 </div>
 
 <div *ngIf="hero">
-  <h1>{{ hero.name }}</h1>
-
-  <div>
-    <label for="name">Name </label>
-    <input id="name" [(ngModel)]="hero.name" placeholder="name">
+  <div [class]="view === 'detail' ? 'row' : ''">
+    <div [class]="view === 'detail' ? 'col-md-3' : ''">
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="id">id</span>
+        <input type="number" class="form-control" placeholder="id" aria-label="id" aria-describedby="id" readonly disabled [(ngModel)]="hero.id">
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="name">name</span>
+        <input type="text" class="form-control" placeholder="name" aria-label="name" aria-describedby="name" [(ngModel)]="hero.name">
+      </div>
+    </div>
   </div>
 </div>

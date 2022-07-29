@@ -1,23 +1,57 @@
 <h1>Heroes</h1>
 
-<div *ngIf="heroes">
-  <h3>Other page</h3>
-  <div *ngFor="let hero of heroes">
-    <button type="button" [routerLink]="['/heroes/' + hero.id + '/details']">
-        {{ hero.name }}
-    </button>
+<div *ngIf="heroes" class="container-fluid">
+  <div class="row">
+    <h3>Other page</h3>
+    <div class="col-lg-3" *ngFor="let hero of heroes">
+      <div class="card mb-3">
+        <div class="card-header">
+          <div class="row">
+            <div class="col">
+              {{ hero.name }}
+            </div>
+            <div class="col">
+              <div class="text-end">
+                <button class="btn btn-primary btn-sm" type="button" [routerLink]="['/heroes/' + hero.id + '/details']">
+                  show
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <h3>Same page</h3>
-  <div *ngFor="let hero of heroes">
-    <button type="button" (click)="onSelect(hero)">
-        {{ hero.name }}
-    </button>
+  <div class="row">
+    <div class="col-lg-3">
+      <h3>Same page</h3>
+      <div *ngFor="let hero of heroes">
+        <div class="card mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col">
+                {{ hero.name }}
+              </div>
+              <div class="col">
+                <div class="text-end">
+                  <button class="btn btn-primary btn-sm" type="button" (click)="onSelect(hero)">
+                    show
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div *ngIf="hero !== undefined && view === 'list'">
+        <h3>Details {{hero ? 'of ' + hero.name : ''}}</h3>
+        <app-hero-info [hero]="hero" [view]="view"></app-hero-info>
+        <app-message></app-message>
+      </div>
+    </div>
   </div>
 </div>
-
-<div *ngIf="hero !== undefined && view === 'list'">
-  <app-hero-info [hero]="hero" [view]="view"></app-hero-info>
-</div>
-
-<app-message></app-message>

@@ -1,0 +1,21 @@
+/* Importing Bootstrap SCSS file. */
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.content-wrap {
+  padding-bottom: 2.5rem;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  padding: 8px;
+  background-color: skyblue;
+  text-align: center;
+}
